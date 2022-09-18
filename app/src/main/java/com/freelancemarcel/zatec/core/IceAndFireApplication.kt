@@ -2,7 +2,7 @@ package com.freelancemarcel.zatec.core
 
 import android.app.Application
 import com.freelancemarcel.zatec.core.network.IceAndFireAPI
-import com.freelancemarcel.zatec.houses.HouseRepository
+import com.freelancemarcel.zatec.houses.data.HouseRepository
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
