@@ -54,7 +54,6 @@ private fun ListOfHousesScreenHeader() {
 fun ListOfHousesScreen(viewModel: IceAndFireApplicationViewModel, onViewHouse: (String) -> Unit) {
     val houses: LazyPagingItems<HouseListItem> = viewModel.houses.collectAsLazyPagingItems()
     var isLoading by remember { mutableStateOf(false) }
-
     Column(Modifier.fillMaxSize()) {
         Spacer(Modifier.height(32.dp))
         ListOfHousesScreenHeader()

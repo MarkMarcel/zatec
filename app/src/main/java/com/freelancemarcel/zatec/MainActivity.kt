@@ -50,7 +50,7 @@ class MainActivity : ComponentActivity() {
                             }),
                         ) {
                             val houseUrl = """https://www.anapioficeandfire.com/api/houses/${it.arguments!!.getString("url","")}"""
-                            HouseScreen(houseUrl = houseUrl, viewModel = viewModel)
+                            HouseScreen(houseUrl = houseUrl, viewModel = viewModel){ navController.popBackStack() }
                         }
                         composable(ROOT) {
                             ListOfHousesScreen(viewModel) { houseUrl ->
