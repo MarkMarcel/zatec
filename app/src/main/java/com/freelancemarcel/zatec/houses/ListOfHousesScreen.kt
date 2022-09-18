@@ -48,16 +48,17 @@ private fun ListOfHousesScreenHeader() {
 }
 
 @Composable
-fun ListOfHousesScreen(viewModel: IceAndFireApplicationViewModel) {
+fun ListOfHousesScreen(viewModel: IceAndFireApplicationViewModel, onViewHouse: (String) -> Unit) {
     val houses: LazyPagingItems<HouseListItem> = viewModel.houses.collectAsLazyPagingItems()
 
     Column(Modifier.fillMaxSize()) {
+        Spacer(Modifier.height(32.dp))
         ListOfHousesScreenHeader()
         Spacer(Modifier.height(16.dp))
         LazyColumn(modifier = Modifier.padding(horizontal = 16.dp)) {
-            items(houses){house ->
+            items(houses) { house ->
                 house?.let {
-                    ListItemHouse(house = it)
+                    ListItemHouse(house = it,onViewHouse = onViewHouse)
                     Spacer(Modifier.height(16.dp))
                 }
             }

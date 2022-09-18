@@ -1,5 +1,6 @@
 package com.freelancemarcel.zatec.core.network
 
+import com.freelancemarcel.zatec.houses.models.House
 import com.freelancemarcel.zatec.houses.models.HouseListItem
 import retrofit2.Response
 import retrofit2.http.GET
@@ -28,6 +29,9 @@ interface IceAndFireAPI {
             return pagination
         }
     }
+
+    @GET
+    suspend fun getHouse(@Url url:String):Response<House>
 
     @GET
     suspend fun getHouses(@Url page: String): Response<List<HouseListItem>>

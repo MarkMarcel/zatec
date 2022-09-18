@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Ice</string>
     <string name="houses">Houses</string>
+    <string name="failure_loadhouse">Failed to load house details</string>
+    <string name="failure_loadhouses">Failed to load houses</string>
+    <string name="region">Region</string>
+    <string name="coat_of_arms">Coat of Arms</string>
+    <string name="founded">Founded</string>
+    <string name="titles">Titles</string>
 </resources>

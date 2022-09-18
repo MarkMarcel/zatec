@@ -12,7 +12,7 @@ import com.freelancemarcel.zatec.R
 val GOTFont = FontFamily(Font(R.font.got))
 val Typography = Typography(
     body1 = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = FontFamily.Serif,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
     )
