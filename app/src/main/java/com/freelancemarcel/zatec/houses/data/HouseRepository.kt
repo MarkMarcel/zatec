@@ -5,7 +5,7 @@ import com.freelancemarcel.zatec.core.models.Error
 import com.freelancemarcel.zatec.core.models.ErrorType
 import com.freelancemarcel.zatec.core.models.PaginatedList
 import com.freelancemarcel.zatec.core.network.IceAndFireAPI
-import com.freelancemarcel.zatec.houses.HouseListItem
+import com.freelancemarcel.zatec.houses.models.HouseListItem
 
 class HouseRepository(private val iceAndFireAPI: IceAndFireAPI) {
     suspend fun getHouses(pageUrl: String): Either<Error, PaginatedList<String, HouseListItem>> {

@@ -5,6 +5,7 @@
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowBackground">@drawable/backgroundcolor_app</item>
     </style>
     <style name="Theme.Ice.Splashscreen">
         <item name="android:windowTranslucentStatus">true</item>

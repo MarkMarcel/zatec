@@ -17,7 +17,7 @@ private val LightColorPalette = lightColors(
     primary = Chestnut,
     primaryVariant = Rust,
     secondary = WindsorTan,
-    surface = BlueSapphire
+    surface = OxfordBlue
 
     /* Other default colors to override
     background = Color.White,
@@ -34,7 +34,7 @@ fun IceTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable ()
     val colors = if (darkTheme) {
         DarkColorPalette
     } else {
-        LightColorPalette
+        DarkColorPalette
     }
 
     MaterialTheme(

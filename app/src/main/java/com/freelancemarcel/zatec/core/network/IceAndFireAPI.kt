@@ -1,6 +1,6 @@
 package com.freelancemarcel.zatec.core.network
 
-import com.freelancemarcel.zatec.houses.HouseListItem
+import com.freelancemarcel.zatec.houses.models.HouseListItem
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Url

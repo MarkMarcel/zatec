@@ -23,6 +23,7 @@ import com.freelancemarcel.zatec.core.IceAndFireApplication
 import com.freelancemarcel.zatec.core.IceAndFireApplicationViewModel
 import com.freelancemarcel.zatec.core.ui.theme.GOTFont
 import com.freelancemarcel.zatec.core.ui.theme.IceTheme
+import com.freelancemarcel.zatec.houses.ListOfHousesScreen
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -33,18 +34,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             IceTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Column(Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center) {
-                        Card(Modifier.size(300.dp, 40.dp), shape = RoundedCornerShape(50), backgroundColor = Color.White) {
-
-                        }
-                        Greeting("Android")
-                    }
-                }
+                ListOfHousesScreen(viewModel)
             }
         }
 

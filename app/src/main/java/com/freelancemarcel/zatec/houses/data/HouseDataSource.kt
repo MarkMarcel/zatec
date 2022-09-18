@@ -2,7 +2,7 @@ package com.freelancemarcel.zatec.houses.data
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.freelancemarcel.zatec.houses.HouseListItem
+import com.freelancemarcel.zatec.houses.models.HouseListItem
 
 class HouseDataSource(private val houseRepository: HouseRepository) :
     PagingSource<String, HouseListItem>() {
