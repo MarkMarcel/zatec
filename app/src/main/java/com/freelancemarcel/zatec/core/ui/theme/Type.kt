@@ -1,4 +1,4 @@
-package com.freelancemarcel.zatec.ui.theme
+package com.freelancemarcel.zatec.core.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

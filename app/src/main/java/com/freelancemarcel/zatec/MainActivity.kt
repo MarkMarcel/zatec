@@ -10,7 +10,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.freelancemarcel.zatec.ui.theme.IceTheme
+import androidx.lifecycle.lifecycleScope
+import com.freelancemarcel.zatec.core.IceAndFireApplication
+import com.freelancemarcel.zatec.core.ui.theme.IceTheme
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +29,7 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+
     }
 }
 

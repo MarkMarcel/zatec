@@ -1,4 +1,4 @@
-package com.freelancemarcel.zatec.ui.theme
+package com.freelancemarcel.zatec.core.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

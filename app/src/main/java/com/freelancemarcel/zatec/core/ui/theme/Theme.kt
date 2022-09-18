@@ -1,4 +1,4 @@
-package com.freelancemarcel.zatec.ui.theme
+package com.freelancemarcel.zatec.core.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
