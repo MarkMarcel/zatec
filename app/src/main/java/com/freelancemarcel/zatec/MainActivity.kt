@@ -69,6 +69,7 @@ class MainActivity : ComponentActivity() {
                     val message = when(it.type){
                         ErrorType.LOAD_FAILURE_HOUSE -> getString(R.string.failure_loadhouse)
                         ErrorType.LOAD_FAILURE_HOUSES -> getString(R.string.failure_loadhouses)
+                        ErrorType.LOAD_FAILURE_NETWORK -> getString(R.string.failure_network)
                     }
                     scaffoldState.showSnackbar(message)
                     viewModel.onError(null)

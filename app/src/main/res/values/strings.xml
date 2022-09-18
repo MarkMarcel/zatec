@@ -7,4 +7,5 @@
     <string name="coat_of_arms">Coat of Arms</string>
     <string name="founded">Founded</string>
     <string name="titles">Titles</string>
+    <string name="failure_network">Couldn\'t connect to server, check your network</string>
 </resources>
