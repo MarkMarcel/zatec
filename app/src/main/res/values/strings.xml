@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ice</string>
+    <string name="app_name">GoTown</string>
     <string name="houses">Houses</string>
     <string name="failure_loadhouse">Failed to load house details</string>
     <string name="failure_loadhouses">Failed to load houses</string>
