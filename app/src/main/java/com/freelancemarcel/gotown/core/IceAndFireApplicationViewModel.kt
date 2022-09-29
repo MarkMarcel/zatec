@@ -10,6 +10,7 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.freelancemarcel.gotown.core.models.Error
 import com.freelancemarcel.gotown.houses.data.HouseDataSource
 import com.freelancemarcel.gotown.houses.data.HouseRepository
@@ -38,7 +39,7 @@ class IceAndFireApplicationViewModel(private val houseRepository: HouseRepositor
 
     val houses: Flow<PagingData<HouseListItem>> = Pager(PagingConfig(pageSize = 20)) {
         HouseDataSource(houseRepository)
-    }.flow
+    }.flow.cachedIn(viewModelScope)
 
     private val _stateChanges by lazy { MutableStateFlow(State()) }
     private val _stateFlow by lazy { _stateChanges.asStateFlow() }

@@ -9,7 +9,7 @@ sealed class Either<out L, out R> {
         override fun toString(): String = "Right $value"
     }
 
-    public inline fun <C> fold(ifLeft: (L) -> C, ifRight: (R) -> C): C = when (this) {
+    inline fun <C> fold(ifLeft: (L) -> C, ifRight: (R) -> C): C = when (this) {
         is Right -> ifRight(value)
         is Left -> ifLeft(value)
     }

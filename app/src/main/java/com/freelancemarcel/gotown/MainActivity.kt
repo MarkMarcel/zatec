@@ -7,11 +7,9 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.SnackbarHostState
-import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -23,23 +21,21 @@ import com.freelancemarcel.gotown.core.ui.HOUSE_PATH
 import com.freelancemarcel.gotown.core.ui.ROOT
 import com.freelancemarcel.gotown.core.ui.components.ErrorSnackbar
 import com.freelancemarcel.gotown.core.ui.components.ScreenLoading
-import com.freelancemarcel.gotown.core.ui.theme.GOTFont
 import com.freelancemarcel.gotown.core.ui.theme.IceTheme
 import com.freelancemarcel.gotown.houses.ListOfHousesScreen
 import com.freelancemarcel.gotown.houses.house.HouseScreen
-import java.net.URL
 import java.net.URLDecoder
 import java.net.URLEncoder
 
 class MainActivity : ComponentActivity() {
-    val viewModel: IceAndFireApplicationViewModel by viewModels { IceAndFireApplicationViewModel.Factory }
+    private val _viewModel: IceAndFireApplicationViewModel by viewModels { IceAndFireApplicationViewModel.Factory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_Ice)
         super.onCreate(savedInstanceState)
         setContent {
-            val error by viewModel.getValueAsState(IceAndFireApplicationViewModel.State::error)
-            val isAScreenLoading by viewModel.getValueAsState(IceAndFireApplicationViewModel.State::isAScreenLoading)
+            val error by _viewModel.getValueAsState(IceAndFireApplicationViewModel.State::error)
+            val isAScreenLoading by _viewModel.getValueAsState(IceAndFireApplicationViewModel.State::isAScreenLoading)
             val navController = rememberNavController()
             val scaffoldState = SnackbarHostState()
 
@@ -53,10 +49,10 @@ class MainActivity : ComponentActivity() {
                             }),
                         ) {
                             val houseUrl = URLDecoder.decode(it.arguments!!.getString("url",""),"utf-8")
-                            HouseScreen(houseUrl = houseUrl, viewModel = viewModel){ navController.popBackStack() }
+                            HouseScreen(houseUrl = houseUrl, viewModel = _viewModel){ navController.popBackStack() }
                         }
                         composable(ROOT) {
-                            ListOfHousesScreen(viewModel) { houseUrl ->
+                            ListOfHousesScreen(_viewModel) { houseUrl ->
                                 navController.navigate(HOUSE_PATH.replace("{url}", URLEncoder.encode(houseUrl,"utf-8")))
                             }
                         }
@@ -75,23 +71,10 @@ class MainActivity : ComponentActivity() {
                         ErrorType.LOAD_FAILURE_NETWORK -> getString(R.string.failure_network)
                     }
                     scaffoldState.showSnackbar(message)
-                    viewModel.onError(null)
+                    _viewModel.onError(null)
                 }
             }
         }
 
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!", fontFamily = GOTFont)
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    IceTheme {
-        Greeting("Android")
     }
 }

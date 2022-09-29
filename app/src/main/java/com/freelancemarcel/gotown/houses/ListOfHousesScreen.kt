@@ -2,9 +2,9 @@ package com.freelancemarcel.gotown.houses
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -53,7 +53,9 @@ private fun ListOfHousesScreenHeader() {
 @Composable
 fun ListOfHousesScreen(viewModel: IceAndFireApplicationViewModel, onViewHouse: (String) -> Unit) {
     val houses: LazyPagingItems<HouseListItem> = viewModel.houses.collectAsLazyPagingItems()
+    var isLoadError by remember { mutableStateOf(false) }
     var isLoading by remember { mutableStateOf(false) }
+
     Column(Modifier.fillMaxSize()) {
         Spacer(Modifier.height(32.dp))
         ListOfHousesScreenHeader()
@@ -72,7 +74,24 @@ fun ListOfHousesScreen(viewModel: IceAndFireApplicationViewModel, onViewHouse: (
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Spacer(Modifier.height(16.dp))
-                        CircularProgressIndicator(color = MaterialTheme.colors.surface)
+                        CircularProgressIndicator(color = Color.White)
+                    }
+                }
+            }
+            if (isLoadError) {
+                item {
+                    Column(
+                        Modifier.fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Spacer(Modifier.height(16.dp))
+                        IconButton(onClick = {
+                            isLoadError = false
+                            isLoading = true
+                            houses.retry()
+                        }) {
+                            Icon(Icons.Default.Refresh,contentDescription = "Refresh", tint = Color.White)
+                        }
                     }
                 }
             }
@@ -88,6 +107,21 @@ fun ListOfHousesScreen(viewModel: IceAndFireApplicationViewModel, onViewHouse: (
                 val e = (houses.loadState.refresh as LoadState.Error).error as Error
                 viewModel.onError(e)
                 isLoading = false
+                isLoadError = true
+            }
+            else -> {
+                isLoading = false
+            }
+        }
+        when (houses.loadState.append) {
+            is LoadState.Loading -> {
+                isLoading = true
+            }
+            is LoadState.Error -> {
+                val e = (houses.loadState.refresh as LoadState.Error).error as Error
+                viewModel.onError(e)
+                isLoading = false
+                isLoadError = true
             }
             else -> {
                 isLoading = false
