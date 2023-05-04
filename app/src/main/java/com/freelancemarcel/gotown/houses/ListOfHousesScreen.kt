@@ -1,7 +1,10 @@
 package com.freelancemarcel.gotown.houses
 
+import android.widget.TextView
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Refresh
@@ -13,6 +16,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.core.text.HtmlCompat
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -55,6 +59,27 @@ fun ListOfHousesScreen(viewModel: IceAndFireApplicationViewModel, onViewHouse: (
     val houses: LazyPagingItems<HouseListItem> = viewModel.houses.collectAsLazyPagingItems()
     var isLoadError by remember { mutableStateOf(false) }
     var isLoading by remember { mutableStateOf(false) }
+
+    /*Column(
+        Modifier
+            .fillMaxSize()
+    ) {
+        Spacer(Modifier.height(32.dp))
+        HtmlText(
+            text = HtmlCompat.fromHtml(
+                stringResource(R.string.tos),
+                HtmlCompat.FROM_HTML_MODE_LEGACY
+            ),
+            color = Color.White,
+            style = MaterialTheme.typography.body1,
+            factory = { context -> TextView(context) },
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp)
+        )
+    }*/
 
     Column(Modifier.fillMaxSize()) {
         Spacer(Modifier.height(32.dp))

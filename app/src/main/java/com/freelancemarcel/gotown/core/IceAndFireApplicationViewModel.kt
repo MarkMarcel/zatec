@@ -25,6 +25,7 @@ class IceAndFireApplicationViewModel(private val houseRepository: HouseRepositor
     data class State(
         val error: Error? = null,
         val isAScreenLoading: Boolean = false,
+        val houses:PagingData<HouseListItem> = PagingData.empty(),
         val selectedHouse: House? = null,
     )
 

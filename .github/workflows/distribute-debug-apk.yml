@@ -1,0 +1,25 @@
+name: distribute-debug-apk
+run-name: Build by @${{ github.actor }}
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-debug-apk:
+    name: Generate debug apk
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v3
+      - name: Setup JDK
+        uses: actions/setup-jave@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+      - name: Build debug apk
+        run: bash ./gradlew assembleDebug --stacktrace
+      - name: Upload apk
+        uses: actions/upload-artifact@v3
+        with:
+          name: debug-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
