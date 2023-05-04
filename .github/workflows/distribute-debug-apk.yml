@@ -24,6 +24,7 @@ jobs:
           name: debug-apk
           path: app/build/outputs/apk/debug/app-debug.apk
   send-debug-apk:
+    runs-on: ubuntu-latest
     needs: build-debug-apk
     steps:
       - name: Checkout repository files
