@@ -33,7 +33,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: debug-apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: app/build/outputs/apk/debug
       - name: Send email
         uses: dawidd6/action-send-mail@v3
         with:
@@ -50,4 +50,4 @@ jobs:
             GoTown Developers
           to: freelancemarcel18@gmail.com
           attachments: |
-            ./app/build/outputs/apk/debug/app-debug.apk
+            ./app/build/outputs/apk/debug/*.apk
