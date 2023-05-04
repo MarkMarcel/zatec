@@ -23,3 +23,30 @@ jobs:
         with:
           name: debug-apk
           path: app/build/outputs/apk/debug/app-debug.apk
+  send-debug-apk:
+    needs: build-debug-apk
+    steps:
+      - name: Checkout repository files
+        uses: actions/checkout@v3
+      - name: Download apk
+        uses: actions/download-artifact@v3
+        with:
+          name: debug-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
+      - name: Send email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: "${{secrets.sender_email}}"
+          password: "${{secrets.sender_email_password}}"
+          subject: "Test APK Ready"
+          from: "GoTown Developers"
+          body: |
+            Hi,
+            Kindly find attached sandbox apk for testing.
+            Regards,
+            GoTown Developers
+          to: freelancemarcel18@gmail.com
+          attachments: |
+            ./app/build/outputs/apk/debug/app-debug.apk
