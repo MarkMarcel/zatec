@@ -5,27 +5,8 @@ on:
     branches:
       - main
 jobs:
-  build-debug-apk:
-    name: Generate debug apk
+  upload-debug-apk:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository code
-        uses: actions/checkout@v3
-      - name: Setup JDK
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'zulu'
-          java-version: '17'
-      - name: Build debug apk
-        run: bash ./gradlew assembleDebug --stacktrace
-      - name: Upload apk
-        uses: actions/upload-artifact@v3
-        with:
-          name: debug-apk
-          path: app/build/outputs/apk/debug/app-debug.apk
-  send-debug-apk:
-    runs-on: ubuntu-latest
-    needs: build-debug-apk
     steps:
       - name: Checkout repository files
         uses: actions/checkout@v3
@@ -34,20 +15,9 @@ jobs:
         with:
           name: debug-apk
           path: app/build/outputs/apk/debug
-      - name: Send email
-        uses: dawidd6/action-send-mail@v3
+      - name: Upload to Google Drive
+        uses: adityak74/google-drive-upload-git-action@main
         with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          username: "${{secrets.sender_email}}"
-          password: "${{secrets.sender_email_password}}"
-          subject: "Test APK Ready"
-          from: "GoTown Developers"
-          body: |
-            Hi,
-            Kindly find attached sandbox apk for testing.
-            Regards,
-            GoTown Developers
-          to: freelancemarcel18@gmail.com
-          attachments: |
-            ./app/build/outputs/apk/debug/*.apk
+          credentials: "${{sa_64}}"
+          filename: "./app/build/outputs/apk/debug/*.apk"
+          folderId: "${{gd_folder}}"
