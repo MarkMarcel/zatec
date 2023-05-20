@@ -18,6 +18,6 @@ jobs:
       - name: Upload to Google Drive
         uses: adityak74/google-drive-upload-git-action@main
         with:
-          credentials: "${{sa_64}}"
+          credentials: "${{secrets.sa_64}}"
           filename: "./app/build/outputs/apk/debug/*.apk"
-          folderId: "${{gd_folder}}"
+          folderId: "${{secrets.gd_folder}}"
