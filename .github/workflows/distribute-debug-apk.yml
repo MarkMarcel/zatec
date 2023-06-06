@@ -40,6 +40,8 @@ jobs:
           credentials: "${{secrets.sa_64}}"
           filename: "./app/build/outputs/apk/debug/*.apk"
           folderId: "${{secrets.gd_folder}}"
+          name: "sandbox-$(date +'%Y%m%d.%H%M%S').apk"
+          overwrite: true
   send-emails:
     needs: upload-debug-apk
     runs-on: ubuntu-latest
